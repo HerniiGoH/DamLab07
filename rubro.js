@@ -19,7 +19,7 @@ const Rubro = ({navigation}) => {
         () => {
             const doPost = () => {
                 // TODO hacer el PUT para actualizar
-                fetch('http://10.15.156.129:5000/rubros', 
+                fetch('http://192.168.1.9:5000/rubros', 
                 {
                     method: 'POST',
                     headers: {
