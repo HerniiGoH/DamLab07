@@ -18,13 +18,30 @@ const ListaRubro = () => {
                 doGet();
             }
         },
-        [actualizar]);
+        []);
+
+        const doBorrar = (item) => {
+            fetch('http://192.168.1.9:5000/rubros/'+item.id,{
+                            method: 'DELETE'
+                        }
+                    ).then(response => {
+                        return response.json();
+                    })
+                    .then(setActualizar(true));
+        };
 
     return (
         <View>
             <FlatList 
                 data = {listaRubros}
-                renderItem = {({item}) => (<Text>{item.descripcion}</Text>)}
+                renderItem = {({item}) => (
+                   <View> 
+                        <Text>{item.descripcion}</Text>
+                        <Button title="Editar"/>
+                        <Button title="Eliminar"
+                            onPress={ () => {doBorrar(item)}}/>
+                    </View>
+                )}
                 keyExtractor = {item => item.id}
             />
         </View>
